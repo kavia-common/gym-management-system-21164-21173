@@ -1,6 +1,6 @@
-# Gym Frontend – Ocean Professional Scaffold
+# Gym Frontend – Ocean Professional
 
-A clean React scaffold aligned with the Ocean Professional theme. Provides a minimal layout shell (TopBar + SideNav), React Router setup, and placeholder pages. Authentication is intentionally deferred.
+A React UI aligned with the Ocean Professional theme, now with a pluggable API layer, entity state via Zustand, and core CRUD pages (Dashboard, Classes, Bookings, Memberships). Authentication is a no-op and can be wired later without changing pages.
 
 ## Features
 
@@ -12,7 +12,11 @@ A clean React scaffold aligned with the Ocean Professional theme. Provides a min
   - `/classes`
   - `/bookings`
   - `/memberships`
-- No authentication or auth context required at this stage
+- Axios API client with baseURL from `REACT_APP_API_URL` (fallback `http://localhost:4000`)
+- Pluggable auth utilities (no-op): `setToken`, `getToken`, `isAuthenticated`
+- Zustand store for entities (classes, bookings, memberships)
+- Reusable common components: `Table`, `Form`, `Loader`
+- No Google Sign-In required or enforced
 
 ## Getting Started
 
@@ -22,21 +26,24 @@ In the project directory:
 - `npm run build` – create production build
 - `npm test` – run tests (if configured)
 
-This project uses the existing CRA toolchain (react-scripts). No extra UI libraries are required.
+This project uses the CRA toolchain (react-scripts). No extra UI libraries are required.
 
 ## Environment Variables
 
-No environment variables are required for this scaffold to run.
 Optional:
 - `REACT_APP_APP_NAME` (defaults to `Gym Manager`)
+- `REACT_APP_API_URL` (defaults to `http://localhost:4000`)
 
 Note:
-- Google Sign-In and any OAuth-related configuration will be set up later if needed. This scaffold purposely avoids reading `REACT_APP_GOOGLE_*` keys so builds run cleanly without secrets.
+- Google Sign-In and any OAuth-related configuration will be set up later if needed. This app does not read `REACT_APP_GOOGLE_*` keys and does not require Google auth to run.
 
 ## Structure
 
 - `src/theme/colors.js` – Ocean palette constants
+- `src/api/` – `client.js` (axios), `services.js` (entity endpoints)
+- `src/state/` – `store.js` (Zustand store)
 - `src/components/Layout/` – `TopBar.jsx`, `SideNav.jsx`, `Layout.jsx`
+- `src/components/common/` – `Table.jsx`, `Form.jsx`, `Loader.jsx`
 - `src/pages/` – `Welcome.jsx`, `Dashboard.jsx`, `Classes.jsx`, `Bookings.jsx`, `Memberships.jsx`
 - `src/App.jsx` – routes and shell usage
 - `src/main.jsx` – entrypoint
@@ -44,10 +51,22 @@ Note:
 
 ## Styling
 
-Basic inline styles and simple CSS are used. No complex dependencies.
+Basic inline styles and simple CSS adhering to the Ocean Professional theme.
 
-## Next Steps
+## Notes on Backend API
 
-- Add real authentication and user state when backend is ready (optional).
-- Replace placeholder content with live data from backend APIs.
-- Expand navigation and access control as required.
+The following endpoints are expected by default:
+- `GET/POST /classes`, `GET/PUT/DELETE /classes/:id`
+- `GET/POST /bookings`, `GET/PUT/DELETE /bookings/:id`
+- `GET/POST /memberships`, `GET/PUT/DELETE /memberships/:id`
+
+If your backend differs, adjust `src/api/services.js` accordingly.
+
+## Auth
+
+A no-op token store is provided in `src/utils/auth.js`. You may later call:
+```js
+import { setToken } from './utils/auth';
+setToken('<jwt>');
+```
+The axios client will automatically attach it as `Authorization: Bearer <jwt>` to all requests.
