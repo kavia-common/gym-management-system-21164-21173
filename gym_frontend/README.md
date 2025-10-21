@@ -1,82 +1,59 @@
-# Lightweight React Template for KAVIA
+# Gym Frontend – Ocean Professional Scaffold
 
-This project provides a minimal React template with a clean, modern UI and minimal dependencies.
+A clean React scaffold aligned with the Ocean Professional theme. Provides a minimal layout shell (TopBar + SideNav), React Router setup, and placeholder pages.
 
 ## Features
 
-- **Lightweight**: No heavy UI frameworks - uses only vanilla CSS and React
-- **Modern UI**: Clean, responsive design with KAVIA brand styling
-- **Fast**: Minimal dependencies for quick loading times
-- **Simple**: Easy to understand and modify
+- Ocean Professional theme (colors, shadows, surface)
+- Minimal app shell: top bar + side navigation
+- React Router pages:
+  - `/login` (Google sign-in button placeholder)
+  - `/` (Dashboard)
+  - `/classes`
+  - `/bookings`
+  - `/memberships`
+- Lightweight AuthContext exposing `signInWithGoogle()` placeholder (no secrets stored)
 
 ## Getting Started
 
-In the project directory, you can run:
+In the project directory:
 
-### `npm start`
+- `npm start` – start development server
+- `npm run build` – create production build
+- `npm test` – run tests (if configured)
 
-Runs the app in development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+This project uses the existing CRA toolchain (react-scripts). No extra UI libraries are required.
 
-### `npm test`
+## Environment Variables
 
-Launches the test runner in interactive watch mode.
+The following keys are read at runtime. Values are not included in the repository and should be provided via `.env` or environment configuration.
 
-### `npm run build`
+- `REACT_APP_GOOGLE_CLIENT_ID`
+- `REACT_APP_GOOGLE_CLIENT_SECRET`
+- `REACT_APP_GOOGLE_REDIRECT_URI`
+- `REACT_APP_GOOGLE_AUTHORIZED_ORIGIN`
+- Optional: `REACT_APP_APP_NAME` (defaults to `Gym Manager`)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Note:
+- The Login page contains a Google Sign-In button wired to a placeholder that logs presence of env keys. No secrets are hardcoded or persisted.
+- When you implement a real OAuth flow later, wire `signInWithGoogle()` to redirect/start OAuth using your backend or Google SDK as needed.
 
-## Customization
+## Structure
 
-### Colors
+- `src/theme/colors.js` – Ocean palette constants
+- `src/components/Layout/` – `TopBar.jsx`, `SideNav.jsx`, `Layout.jsx`
+- `src/pages/` – `Login.jsx`, `Dashboard.jsx`, `Classes.jsx`, `Bookings.jsx`, `Memberships.jsx`
+- `src/context/AuthContext.jsx` – simple auth stub exposing `signInWithGoogle()`
+- `src/App.jsx` – routes and shell usage
+- `src/main.jsx` – entrypoint
+- `src/index.css` – base theme styles
 
-The main brand colors are defined as CSS variables in `src/App.css`:
+## Styling
 
-```css
-:root {
-  --kavia-orange: #E87A41;
-  --kavia-dark: #1A1A1A;
-  --text-color: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --border-color: rgba(255, 255, 255, 0.1);
-}
-```
+Basic inline styles and simple CSS are used. No complex dependencies.
 
-### Components
+## Next Steps
 
-This template uses pure HTML/CSS components instead of a UI framework. You can find component styles in `src/App.css`. 
-
-Common components include:
-- Buttons (`.btn`, `.btn-large`)
-- Container (`.container`)
-- Navigation (`.navbar`)
-- Typography (`.title`, `.subtitle`, `.description`)
-
-## Learn More
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Connect real authentication and user state.
+- Replace placeholder content with live data from backend APIs.
+- Expand navigation and access control as required.

@@ -1,14 +1,14 @@
 :root {
   /* Ocean Professional Theme */
-  --color-primary: #1E3A8A;   /* blue-900 */
-  --color-secondary: #F59E0B; /* amber-500 */
-  --color-success: #059669;   /* emerald-600 */
-  --color-error: #DC2626;     /* red-600 */
-  --color-bg: #F3F4F6;        /* gray-100 */
-  --color-surface: #FFFFFF;   /* white */
-  --color-text: #111827;      /* gray-900 */
-  --color-muted: #6B7280;     /* gray-500 */
-  --color-border: #E5E7EB;    /* gray-200 */
+  --color-primary: #1E3A8A;
+  --color-secondary: #F59E0B;
+  --color-success: #059669;
+  --color-error: #DC2626;
+  --color-bg: #F3F4F6;
+  --color-surface: #FFFFFF;
+  --color-text: #111827;
+  --color-muted: #6B7280;
+  --color-border: #E5E7EB;
 
   --radius-sm: 6px;
   --radius-md: 10px;
@@ -17,77 +17,20 @@
   --shadow-sm: 0 1px 2px rgba(0,0,0,0.06);
   --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
   --shadow-lg: 0 10px 24px rgba(0,0,0,0.12);
-
-  --container-max: 1200px;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+*, *::before, *::after { box-sizing: border-box; }
 
-html, body, #root {
-  height: 100%;
-}
+html, body, #root { height: 100%; }
 
 body {
   margin: 0;
   font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: var(--color-bg);
   color: var(--color-text);
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.container {
-  max-width: var(--container-max);
-  margin: 0 auto;
-  padding: 1rem;
-}
-
-.elevated {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
-}
-
-.text-muted {
-  color: var(--color-muted);
-}
-
-/* Utility spacing */
-.mt-2 { margin-top: .5rem; }
-.mt-3 { margin-top: .75rem; }
-.mt-4 { margin-top: 1rem; }
-.mb-2 { margin-bottom: .5rem; }
-.mb-3 { margin-bottom: .75rem; }
-.mb-4 { margin-bottom: 1rem; }
-
-/* Layout basics for app shell */
-.app-shell {
-  display: grid;
-  grid-template-columns: 260px 1fr;
-  grid-template-rows: 60px 1fr;
-  grid-template-areas:
-    "sidebar topbar"
-    "sidebar main";
-  height: 100%;
-}
-
-@media (max-width: 960px) {
-  .app-shell {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "topbar"
-      "main";
-  }
-}
+a { color: inherit; text-decoration: none; }
