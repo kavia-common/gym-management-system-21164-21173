@@ -4,6 +4,7 @@ import './index.css';
 import './App.css';
 import AppRoutes from './router/AppRoutes';
 import { AuthProvider, useAuth } from './context/AuthContext';
+// Note: No Google Identity Services initialization here. We use backend-redirect-only flow.
 
 function NavBar() {
   const { user, logout } = useAuth();

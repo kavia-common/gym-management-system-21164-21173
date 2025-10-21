@@ -49,6 +49,8 @@ export function AuthProvider({ children }) {
   const logout = useCallback(() => {
     setUser(null);
     // If tokens/cookies are used later, clear them here.
+    // In a backend-redirect OAuth flow, the backend typically sets an httpOnly cookie;
+    // logout might also require calling a backend /auth/logout endpoint to clear server-side session.
   }, []);
 
   const value = useMemo(

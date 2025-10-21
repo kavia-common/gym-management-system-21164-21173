@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import DashboardLayout from '../layout/DashboardLayout';
 import Dashboard from '../pages/Dashboard';
 import Memberships from '../pages/Memberships';
@@ -45,11 +45,5 @@ function RequireAuth() {
   if (!isAuthed) {
     return <Navigate to="/login" replace />;
   }
-  return <OutletWrapper />;
-}
-
-function OutletWrapper() {
-  // Small wrapper to avoid importing Outlet directly where not necessary
-  const { Outlet } = require('react-router-dom');
   return <Outlet />;
 }
