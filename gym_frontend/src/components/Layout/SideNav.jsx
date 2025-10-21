@@ -45,7 +45,7 @@ export default function SideNav() {
         <span>{process.env.REACT_APP_APP_NAME || 'Gym Manager'}</span>
       </div>
       <nav style={{ display: 'flex', flexDirection: 'column', gap: '.25rem' }}>
-        <NavLink to="/" style={navLink} end>Dashboard</NavLink>
+        <NavLink to="/dashboard" style={navLink} end>Dashboard</NavLink>
         <NavLink to="/classes" style={navLink}>Classes</NavLink>
         <NavLink to="/bookings" style={navLink}>Bookings</NavLink>
         <NavLink to="/memberships" style={navLink}>Memberships</NavLink>
