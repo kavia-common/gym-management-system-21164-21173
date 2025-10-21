@@ -7,17 +7,18 @@ import Classes from '../pages/Classes';
 import Bookings from '../pages/Bookings';
 import Payments from '../pages/Payments';
 import Profile from '../pages/Profile';
-import SignIn from '../pages/SignIn';
 import AuthCallback from '../pages/AuthCallback';
 import NotFound from '../pages/NotFound';
 import { useAuthStore } from '../state/authStore';
+import Login from '../pages/Login';
 
 // PUBLIC_INTERFACE
 export default function AppRoutes() {
   /** Defines public and protected routes with a common dashboard layout. */
   return (
     <Routes>
-      <Route path="/signin" element={<SignIn />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signin" element={<Login />} />
       <Route path="/auth/callback" element={<AuthCallback />} />
 
       <Route element={<RequireAuth />}>
@@ -39,10 +40,10 @@ export default function AppRoutes() {
 
 // PUBLIC_INTERFACE
 function RequireAuth() {
-  /** Redirects to /signin if not authenticated. */
+  /** Redirects to /login if not authenticated. */
   const isAuthed = useAuthStore(s => !!s.token);
   if (!isAuthed) {
-    return <Navigate to="/signin" replace />;
+    return <Navigate to="/login" replace />;
   }
   return <OutletWrapper />;
 }
