@@ -54,10 +54,10 @@ export default function Classes() {
 
   const openDetail = async (row) => {
     await selectEntity('class', row.id, async (id) => {
-      // re-use local store to avoid refetch list; but hit API for freshest
-      // eslint-disable-next-line no-undef
-      const res = await fetch(`/api/classes/${id}`);
-      return res.json();
+      // Fetch latest details from backend using axios client
+      const { default: api } = await import('../api/client');
+      const res = await api.get(`/api/classes/${id}`);
+      return res.data;
     });
   };
 

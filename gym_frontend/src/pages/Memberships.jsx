@@ -54,9 +54,9 @@ export default function Memberships() {
 
   const openDetail = async (row) => {
     await selectEntity('membership', row.id, async (id) => {
-      // eslint-disable-next-line no-undef
-      const res = await fetch(`/api/memberships/${id}`);
-      return res.json();
+      const { default: api } = await import('../api/client');
+      const res = await api.get(`/api/memberships/${id}`);
+      return res.data;
     });
   };
 

@@ -24,7 +24,8 @@ export const useGymStore = create((set, get) => ({
       const data = await ClassesAPI.list(params);
       set({ classes: { items: data || [], loading: false, error: null } });
     } catch (e) {
-      set({ classes: { ...initialListState, error: e?.message || 'Failed to load classes' } });
+      const msg = e?.response?.data?.message || e?.message || 'Failed to load classes';
+      set({ classes: { ...initialListState, error: msg } });
     }
   },
   async createClass(payload) {
@@ -56,7 +57,8 @@ export const useGymStore = create((set, get) => ({
       const data = await BookingsAPI.list(params);
       set({ bookings: { items: data || [], loading: false, error: null } });
     } catch (e) {
-      set({ bookings: { ...initialListState, error: e?.message || 'Failed to load bookings' } });
+      const msg = e?.response?.data?.message || e?.message || 'Failed to load bookings';
+      set({ bookings: { ...initialListState, error: msg } });
     }
   },
   async createBooking(payload) {
@@ -88,7 +90,8 @@ export const useGymStore = create((set, get) => ({
       const data = await MembershipsAPI.list(params);
       set({ memberships: { items: data || [], loading: false, error: null } });
     } catch (e) {
-      set({ memberships: { ...initialListState, error: e?.message || 'Failed to load memberships' } });
+      const msg = e?.response?.data?.message || e?.message || 'Failed to load memberships';
+      set({ memberships: { ...initialListState, error: msg } });
     }
   },
   async createMembership(payload) {
@@ -120,7 +123,8 @@ export const useGymStore = create((set, get) => ({
       const data = await getFn(id);
       set({ selected: { entity, data, loading: false, error: null } });
     } catch (e) {
-      set({ selected: { entity, data: null, loading: false, error: e?.message || 'Failed to load' } });
+      const msg = e?.response?.data?.message || e?.message || 'Failed to load';
+      set({ selected: { entity, data: null, loading: false, error: msg } });
     }
   },
   clearSelected() {

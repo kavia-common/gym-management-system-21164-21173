@@ -3,6 +3,7 @@ import axios from 'axios';
 /**
  * Axios client configured with baseURL and simple interceptors.
  * baseURL is taken from REACT_APP_API_URL or defaults to http://localhost:4000
+ * Note: Backend should enable CORS for http://localhost:3000 in development.
  */
 
 const baseURL = process.env.REACT_APP_API_URL || 'http://localhost:4000';
@@ -12,6 +13,7 @@ export const api = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
+  withCredentials: false,
 });
 
 // PUBLIC_INTERFACE

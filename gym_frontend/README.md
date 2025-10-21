@@ -55,12 +55,19 @@ Basic inline styles and simple CSS adhering to the Ocean Professional theme.
 
 ## Notes on Backend API
 
-The following endpoints are expected by default:
-- `GET/POST /classes`, `GET/PUT/DELETE /classes/:id`
-- `GET/POST /bookings`, `GET/PUT/DELETE /bookings/:id`
-- `GET/POST /memberships`, `GET/PUT/DELETE /memberships/:id`
+The frontend expects a backend running at `REACT_APP_API_URL` (default `http://localhost:4000`) and the following endpoints, all prefixed by `/api`:
+- `GET/POST /api/classes`, `GET/PUT/DELETE /api/classes/:id`
+- `GET/POST /api/bookings`, `GET/PUT/DELETE /api/bookings/:id`
+- `GET/POST /api/memberships`, `GET/PUT/DELETE /api/memberships/:id`
+- Dev-only: `POST /api/auth/dev-login` -> `{ token }`
 
 If your backend differs, adjust `src/api/services.js` accordingly.
+
+### CORS
+Ensure your backend sends the appropriate CORS headers for development:
+- `Access-Control-Allow-Origin: http://localhost:3000`
+- `Access-Control-Allow-Methods: GET,POST,PUT,DELETE,OPTIONS`
+- `Access-Control-Allow-Headers: Content-Type, Authorization`
 
 ## Auth
 

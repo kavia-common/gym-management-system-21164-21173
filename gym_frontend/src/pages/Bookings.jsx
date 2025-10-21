@@ -54,9 +54,9 @@ export default function Bookings() {
 
   const openDetail = async (row) => {
     await selectEntity('booking', row.id, async (id) => {
-      // eslint-disable-next-line no-undef
-      const res = await fetch(`/api/bookings/${id}`);
-      return res.json();
+      const { default: api } = await import('../api/client');
+      const res = await api.get(`/api/bookings/${id}`);
+      return res.data;
     });
   };
 
